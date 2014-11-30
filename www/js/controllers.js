@@ -135,10 +135,11 @@ $scope.catalougeItems = getData();
         return a;
       }
 
-  $scope.addMoreItem = function(done) {    
+  $scope.addMoreItem = function(done) {  
     if ($scope.catalougeItems.length > $scope.numberOfItemsToDisplay)
       $scope.numberOfItemsToDisplay += 10; // load 5 more items
-      done(); // need to call this when finish loading more data
+      //done(); // need to call this when finish loading more data
+      $scope.$broadcast('scroll.infiniteScrollComplete');
   };
 
   $scope.pauseAll = function () {

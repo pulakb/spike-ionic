@@ -24,13 +24,21 @@
 
 
    <!-- </div> -->
-   <pane ng-controller="MyVideosCtrlGallery">
-   <content has-header="true"  padding="true" on-infinite-scroll="addMoreItem()">
-          <div class=" list">
-            <div ng-repeat="item in catalougeItems | limitTo:numberOfItemsToDisplay" class="item" type="item-text-wrap">
-              <h3>{{item}}</h3>
-            </div>
-          </div>
-        </content>
-    </pane>
+   <div>
+   <ion-pane ng-controller="MyVideosCtrlGallery">
+   <!--TODO: to show nav bar-->
+ <ion-content>
+    <!-- our list and list items -->
+    <ion-list>
+      <ion-item ng-repeat="item in catalougeItems | limitTo:numberOfItemsToDisplay" class="item" type="item-text-wrap">
+        <h3>{{item}}</h3>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll
+    on-infinite="addMoreItem()"
+    distance="1%">
+  </ion-infinite-scroll>
+  </ion-content>
+    </ion-pane>
+</div>
 <!-- </div> -->
