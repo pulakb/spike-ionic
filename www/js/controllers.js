@@ -76,33 +76,7 @@ if (item != undefined) {
       };
 
 }])
-.controller('MyVideosCtrl', ['$scope', 'MyVideosService', function($scope, MyVideosService) {
-
-  $scope.numberOfItemsToDisplay = 10; // number of item to load each time
-
-  //Call service to fetch all category listing
-  /*MyVideosService.getMyVideos().then(function (response) {
-    $scope.catalougeItems = response.data;
-  }, function (err) {
-      console.log(err);
-  });*/
-
-$scope.catalougeItems = getData(); 
-      
-      function getData() {
-        var a = [];
-        for (var i=1; i< 1000; i++) {
-            a.push(i);
-        }
-            
-        return a;
-      }
-
-  $scope.addMoreItem = function(done) {    
-    if ($scope.catalougeItems.length > $scope.numberOfItemsToDisplay)
-      $scope.numberOfItemsToDisplay += 10; // load 5 more items
-      done(); // need to call this when finish loading more data
-  };
+.controller('MyVideosCtrl', ['$scope', function($scope) {
 
   $scope.pauseAll = function () {
     alert("Pause All");
@@ -118,13 +92,13 @@ $scope.catalougeItems = getData();
   $scope.numberOfItemsToDisplay = 10; // number of item to load each time
 
   //Call service to fetch all category listing
-  /*MyVideosService.getMyVideos().then(function (response) {
-    $scope.catalougeItems = response.data;
+  MyVideosService.getMyVideos().then(function (response) {
+      $scope.catalougeItems = response.data;
   }, function (err) {
       console.log(err);
-  });*/
+  });
 
-$scope.catalougeItems = getData(); 
+/*$scope.catalougeItems = getData();
       
       function getData() {
         var a = [];
@@ -133,12 +107,11 @@ $scope.catalougeItems = getData();
         }
             
         return a;
-      }
+      }*/
 
   $scope.addMoreItem = function(done) {  
     if ($scope.catalougeItems.length > $scope.numberOfItemsToDisplay)
       $scope.numberOfItemsToDisplay += 10; // load 5 more items
-      //done(); // need to call this when finish loading more data
       $scope.$broadcast('scroll.infiniteScrollComplete');
   };
 
