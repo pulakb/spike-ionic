@@ -31,6 +31,7 @@
     <!-- our list and list items -->
     <ion-list>
       <ion-item ng-repeat="item in catalougeItems | limitTo:numberOfItemsToDisplay" class="item" type="item-text-wrap">
+      <h1>{{$index}}</h1>
           <img ng-src="{{item.images[0]['thumb-url']}}">
       </ion-item>
     </ion-list>
