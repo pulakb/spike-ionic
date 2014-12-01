@@ -24,14 +24,14 @@
 
 
    <!-- </div> -->
-   <div>
+   <div id="myVideos">
    <ion-pane ng-controller="MyVideosCtrlGallery">
    <!--TODO: to show nav bar-->
  <ion-content>
     <!-- our list and list items -->
     <ion-list>
       <ion-item ng-repeat="item in catalougeItems | limitTo:numberOfItemsToDisplay" class="item" type="item-text-wrap">
-        <h3>{{item}}</h3>
+          <img ng-src="{{item.images[0]['thumb-url']}}">
       </ion-item>
     </ion-list>
     <ion-infinite-scroll
