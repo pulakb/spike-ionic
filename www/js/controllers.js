@@ -90,14 +90,16 @@ if (item != undefined) {
 .controller('MyVideosCtrlGallery', ['$scope', 'MyVideosService', function($scope, MyVideosService) {
 
   $scope.numberOfItemsToDisplay = 10; // number of item to load each time
-
+  var datasource=function(){
   //Call service to fetch all category listing
   MyVideosService.getMyVideos().then(function (response) {
       $scope.catalougeItems = response.data;
+    $scope.numberOfItemsToDisplay= $scope.catalougeItems.length;
   }, function (err) {
       console.log(err);
   });
-
+};
+  datasource();
 /*$scope.catalougeItems = getData();
       
       function getData() {
@@ -110,8 +112,8 @@ if (item != undefined) {
       }*/
 
   $scope.addMoreItem = function(done) {  
-    if ($scope.catalougeItems.length > $scope.numberOfItemsToDisplay)
-      $scope.numberOfItemsToDisplay += 10; // load 5 more items
+       datasource();
+
       $scope.$broadcast('scroll.infiniteScrollComplete');
   };
 
